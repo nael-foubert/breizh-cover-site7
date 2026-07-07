@@ -100,7 +100,7 @@ exports.handler = async (event) => {
         temperature: 0,
         responseMimeType: 'application/json',
         thinkingConfig: {
-          thinkingLevel: 'Medium' // précision privilégiée sur la vitesse : moins de zones fantômes/oubliées
+          thinkingLevel: 'MEDIUM' // précision privilégiée sur la vitesse : moins de zones fantômes/oubliées
         },
         maxOutputTokens: 16384,
         responseSchema: {
