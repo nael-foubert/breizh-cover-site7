@@ -102,7 +102,7 @@ exports.handler = async (event) => {
         thinkingConfig: {
           thinkingLevel: 'MEDIUM' // précision privilégiée sur la vitesse : moins de zones fantômes/oubliées
         },
-        maxOutputTokens: 16384,
+        maxOutputTokens: 30000,
         responseSchema: {
           type: "OBJECT",
           properties: {
