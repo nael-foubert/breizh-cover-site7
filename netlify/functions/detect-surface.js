@@ -1,5 +1,5 @@
 // netlify/functions/detect-surface.js
-const GEMINI_MODEL = 'gemini-3.1-flash-lite';
+const GEMINI_MODEL = 'gemini-3.5-flash'; // Passage au modèle de production gratuit beaucoup plus précis
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 function parseDataUrl(dataUrl){
@@ -17,22 +17,21 @@ function extractBoxesFromText(text){
   
   return rawBoxes
     .map(b => {
-      let x = Number(b.x);
-      let y = Number(b.y);
-      let w = Number(b.w);
-      let h = Number(b.h);
+      if (!b.box_2d || b.box_2d.length !== 4) return null;
+      
+      // Gemini renvoie nativement [y_min, x_min, y_max, x_max] de 0 à 1000
+      const [y_min, x_min, y_max, x_max] = b.box_2d;
 
-      // SÉCURITÉ : Si Gemini renvoie des entiers entre 0 et 1000 (sa spécialité absolue),
-      // on les divise par 1000 pour redonner des pourcentages propres au frontend (0 à 1)
-      if (x > 1 || y > 1 || w > 1 || h > 1) {
-        x = x / 1000;
-        y = y / 1000;
-        w = w / 1000;
-        h = h / 1000;
-      }
+      // Traduction et conversion immédiate en pourcentages (0 à 1) pour ton frontend
+      const x = x_min / 1000;
+      const y = y_min / 1000;
+      const w = (x_max - x_min) / 1000;
+      const h = (y_max - y_min) / 1000;
+
       return { x, y, w, h };
     })
     .filter(b =>
+      b &&
       [b.x, b.y, b.w, b.h].every(n => Number.isFinite(n) && n >= 0 && n <= 1) &&
       b.w > 0.01 && b.h > 0.01
     );
@@ -64,27 +63,13 @@ exports.handler = async (event) => {
     }
     const clientPhoto = parseDataUrl(photo);
 
-    // PROMPT RENFORCÉ : ancrage strict sur des preuves visuelles + double passe d'auto-vérification
-    // pour réduire les hallucinations (boîtes fantômes sur murs/ombres/électroménagers).
+    // Prompt optimisé pour le protocole de détection natif de Gemini
     const prompt = [
-      "Tu es un système de vision par ordinateur de haute précision spécialisé dans le détourage de façades de meubles (portes et tiroirs).",
-      "",
-      "RÈGLE D'OR : tu ne dessines une boîte QUE si tu peux pointer un bord physique réel et continu dans l'image (un joint entre deux façades, une poignée, une charnière, un cadre). Si tu hésites entre 'il y a peut-être un meuble ici' et 'je ne vois pas de bord net', tu NE crées PAS la boîte. Le silence (aucune boîte) est toujours préférable à une boîte inventée.",
-      "",
-      "INTERDIT : déduire une boîte par symétrie, par répétition de motif, ou par logique d'ameublement ('il devrait y avoir une porte ici car la colonne d'à côté en a une'). Chaque boîte est justifiée uniquement par ce qui est visible dans CETTE image précise, jamais par une supposition générale sur les cuisines.",
-      "",
-      "ÉTAPE 1 — BALAYAGE (silencieux) : parcours l'image de GAUCHE À DROITE, colonne par colonne, jusqu'au bord droit inclus. Note chaque porte/tiroir dont tu vois clairement les 4 bords ou dont les bords sont coupés par le cadre de la photo. Une colonne étroite (bandeau, colonne de finition) collée à un mur ou à un électroménager compte comme une colonne à part entière.",
-      "",
-      "ÉTAPE 2 — DÉTOURAGE : une boîte distincte par porte/tiroir individuel, jamais un rectangle englobant plusieurs façades. Aligne chaque bord au pixel près sur le joint réel — s'arrêter avant le joint ou déborder dessus sont deux erreurs équivalentes. Pour les façades étroites (bandeaux, colonnes de finition), vérifie pixel par pixel chaque bord vertical : une erreur de quelques unités y est visible à l'écran alors qu'elle ne l'est pas sur une grande boîte.",
-      "",
-      "PIÈGES À NE PAS MANQUER (mais toujours sous réserve de la RÈGLE D'OR ci-dessus) : (1) une façade fine collée à un four/micro-ondes/frigo reste un meuble à détecter si son bord est visible ; (2) le dernier quart droit et le premier quart gauche de l'image sont les zones les plus souvent oubliées ou, à l'inverse, les plus souvent hallucinées en zone de bordure — vérifie chaque bord avec la même exigence que pour le centre de l'image ; (3) couvre les éléments partiellement coupés par le cadre uniquement si leur bord de joint est réellement visible sur la portion capturée.",
-      "",
-      "EXCLUSIONS STRICTES (jamais de boîte dessus) : plan de travail, crédence, évier, robinet, murs, sol, plafond, la grande niche ouverte centrale en bois, reflets, ombres portées, et TOUS les électroménagers eux-mêmes (four, micro-ondes, plaque, hotte, frigo, lave-vaisselle...).",
-      "",
-      "ÉTAPE 3 — AUTO-VÉRIFICATION (obligatoire, silencieuse, avant de répondre) : reprends ta liste boîte par boîte. Pour chacune, demande-toi 'quel bord précis (joint, poignée, charnière) prouve que cette boîte existe ?'. Si tu ne peux pas répondre par un élément visuel concret et localisé, supprime la boîte immédiatement. Ne renvoie que les boîtes qui survivent à cette vérification.",
-      "",
-      "SYSTÈME DE COORDONNÉES (Échelle 0 à 1000, entiers uniquement) :",
-      "Image = 1000×1000 unités. x/y = coin haut-gauche (0=bord gauche/haut, 1000=bord droit/bas). w/h = largeur/hauteur du rectangle."
+      "Tu es un système de vision par ordinateur de haute précision spécialisé dans le repérage de façades de meubles (portes et tiroirs).",
+      "Détecte chaque porte et tiroir visible individuellement.",
+      "Pour chaque élément détecté, renvoie ses coordonnées précises dans le tableau 'box_2d' au format [y_min, x_min, y_max, x_max].",
+      "RÈGLE D'OR : Aligne chaque bord au pixel près sur le joint réel entre les façades. Ne déborde pas sur les poignées ou les appareils électroménagers.",
+      "EXCLUSIONS STRICTES : Exclue les murs, sols, plans de travail, fours, micro-ondes, et réfrigérateurs."
     ].join('\n');
 
     const body = {
@@ -99,10 +84,8 @@ exports.handler = async (event) => {
       generationConfig: {
         temperature: 0,
         responseMimeType: 'application/json',
-        thinkingConfig: {
-          thinkingLevel: 'MEDIUM' // précision privilégiée sur la vitesse : moins de zones fantômes/oubliées
-        },
-        maxOutputTokens: 30000,
+        // ATTENTION : On supprime totalement 'thinkingConfig' ici car il fait bugger la détection spatiale.
+        maxOutputTokens: 4096, 
         responseSchema: {
           type: "OBJECT",
           properties: {
@@ -111,12 +94,13 @@ exports.handler = async (event) => {
               items: {
                 type: "OBJECT",
                 properties: {
-                  x: { type: "INTEGER" },
-                  y: { type: "INTEGER" },
-                  w: { type: "INTEGER" },
-                  h: { type: "INTEGER" }
+                  box_2d: {
+                    type: "ARRAY",
+                    description: "Coordonnées de l'objet au format natif [y_min, x_min, y_max, x_max], échelle 0 à 1000",
+                    items: { type: "INTEGER" }
+                  }
                 },
-                required: ["x", "y", "w", "h"]
+                required: ["box_2d"]
               }
             }
           },
@@ -137,10 +121,6 @@ exports.handler = async (event) => {
     }
 
     const data = await geminiRes.json();
-    const finishReason = data?.candidates?.[0]?.finishReason;
-    if(finishReason === 'MAX_TOKENS'){
-      return { statusCode: 502, headers: cors, body: JSON.stringify({ error: "La réponse a été coupée avant la fin (budget de tokens dépassé). Augmente maxOutputTokens." }) };
-    }
     const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text).filter(Boolean).join('\n');
     if(!text){
       return { statusCode: 502, headers: cors, body: JSON.stringify({ error: "Pas de résultat exploitable." }) };
