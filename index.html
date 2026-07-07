@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breizh Cover — Covering mobilier & films de vitrage en Bretagne</title>
+<meta name="description" content="Breizh Cover : covering de mobilier et pose de films de vitrage (solaire, confidentialité, occultant, sécurité, anti-effraction) en Bretagne. Matériaux Coverstyle et Solar Screen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #16232B;
+    --navy-2: #1E2E37;
+    --cream: #F3ECE0;
+    --copper: #B8794A;
+    --copper-light: #D4A574;
+    --walnut: #5A3B26;
+    --walnut-light: #8C6239;
+    --marble: #D8D2C4;
+    --line: rgba(243,236,224,0.14);
+    --radius: 2px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--navy);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.1;
+  }
+
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--copper-light);
+    display:flex;
+    align-items:center;
+    gap:0.7em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;height:1px;
+    background:var(--copper-light);
+    display:inline-block;
+  }
+
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+
+  /* === REAL COVERSTYL MATERIAL PHOTOS (hosted locally, no external dependency) === */
+  .tx-wood{
+    background-image:url('materials/AA06.jpg');
+    background-size:cover;background-position:center;
+  }
+  .tx-oak{
+    background-image:url('materials/AA04.jpg');
+    background-size:cover;background-position:center;
+  }
+  .tx-marble{
+    background-image:url('materials/NE31.jpg');
+    background-size:cover;background-position:center;
+  }
+  .tx-slate{
+    background-image:url('materials/NE26.jpg');
+    background-size:cover;background-position:center;
+  }
+  .tx-old-white{
+    background:
+      radial-gradient(ellipse 40% 30% at 30% 70%, rgba(160,140,90,0.16), transparent 70%),
+      radial-gradient(ellipse 50% 25% at 70% 20%, rgba(150,130,80,0.10), transparent 70%),
+      linear-gradient(160deg, #d9d0b2, #c7bd9c 55%, #d3c8a6);
+    box-shadow:inset 0 0 22px rgba(60,50,20,0.18);
+  }
+  .tx-old-counter{
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0px, transparent 2px, transparent 9px),
+      linear-gradient(100deg, #cabf9e, #ded4b4 45%, #c3b791);
+  }
+
+  /* === NAV === */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(22,35,43,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:1160px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;font-size:1.3rem;font-weight:700;
+    letter-spacing:-0.01em;display:flex;align-items:baseline;gap:8px;
+  }
+  .logo span{
+    color:var(--copper-light);font-family:'JetBrains Mono', monospace;
+    font-size:0.58rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .navlinks{display:flex;gap:36px;font-size:0.87rem;}
+  .navlinks a{opacity:0.82;transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--copper);color:var(--navy);padding:10px 20px;
+    font-size:0.8rem;font-weight:600;border-radius:var(--radius);
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--copper-light);}
+  @media(max-width:860px){.navlinks{display:none;}}
+
+  /* === HERO === */
+  .hero{
+    position:relative;min-height:92vh;display:flex;align-items:center;
+    padding:140px 0 70px;
+    background:
+      radial-gradient(ellipse 70% 55% at 12% 15%, rgba(184,121,74,0.14), transparent),
+      var(--navy);
+    overflow:hidden;
+  }
+  .hero-inner{
+    position:relative;z-index:2;display:grid;
+    grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+  }
+  @media(max-width:960px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.9rem);
+    margin:20px 0 24px;
+  }
+  .hero h1 em{font-style:italic;color:var(--copper-light);}
+  .hero p.lead{font-size:1.05rem;max-width:460px;opacity:0.8;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--copper);color:var(--navy);padding:15px 28px;
+    font-weight:600;font-size:0.9rem;border-radius:var(--radius);
+    border:1px solid var(--copper);transition:transform .2s, background .2s;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--copper-light);transform:translateY(-1px);}
+  .btn-ghost{
+    padding:15px 24px;font-size:0.9rem;font-weight:500;
+    border:1px solid var(--line);border-radius:var(--radius);opacity:0.9;
+    transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--copper-light);background:rgba(184,121,74,0.06);}
+
+  .hero-swatches{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .swatch-tile{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .swatch-tile .lbl{
+    position:absolute;left:12px;bottom:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;
+    background:rgba(22,35,43,0.72);
+    padding:5px 9px;border-radius:var(--radius);
+  }
+  .swatch-tile.wide{grid-column:span 2;aspect-ratio:2/1;}
+
+  /* === PARTNERS === */
+  .partners{padding:34px 0;border-bottom:1px solid var(--line);border-top:1px solid var(--line);}
+  .partners-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+  .partners-label{
+    font-family:'JetBrains Mono', monospace;font-size:0.68rem;
+    letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;white-space:nowrap;
+  }
+  .partner-badge{
+    font-weight:700;font-size:1rem;opacity:0.7;
+    display:flex;align-items:center;gap:8px;transition:opacity .2s;
+  }
+  .partner-badge:hover{opacity:1;}
+  .partner-badge .tag{
+    font-family:'JetBrains Mono', monospace;font-weight:400;font-size:0.6rem;
+    letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--line);
+    padding:2px 6px;border-radius:var(--radius);opacity:0.75;
+  }
+
+  /* === SECTION GENERIC === */
+  section{padding:110px 0;position:relative;border-bottom:1px solid var(--line);}
+  .section-head{max-width:620px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem);margin-top:16px;}
+  .section-head p{opacity:0.75;margin-top:16px;font-size:1rem;}
+
+  /* === MOBILIER SERVICE === */
+  .mobilier-block{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  }
+  @media(max-width:900px){.mobilier-block{grid-template-columns:1fr;}}
+  .kitchen-demo{display:flex;flex-direction:column;}
+  .mobilier-copy p{opacity:0.75;margin-top:14px;}
+  .mobilier-list{margin-top:26px;display:flex;flex-direction:column;gap:0;}
+  .mobilier-list .row{
+    display:flex;justify-content:space-between;padding:13px 0;
+    border-top:1px solid var(--line);font-size:0.9rem;opacity:0.85;
+  }
+  .mobilier-list .row:last-child{border-bottom:1px solid var(--line);}
+  .mobilier-list .row span:last-child{
+    font-family:'JetBrains Mono', monospace;font-size:0.78rem;color:var(--copper-light);
+  }
+
+  /* === KITCHEN CABINET DEMO === */
+  .kitchen-stage{
+    position:relative;
+    aspect-ratio:5/4;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 30px 70px -25px rgba(0,0,0,0.5);
+    user-select:none;
+    background:#0f1a1e;
+  }
+  .kitchen-room{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, #2a3a3f 0%, #1c2a2e 42%, #16221f 100%);
+  }
+  .kitchen-light{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 70% 45% at 30% 0%, rgba(255,235,190,0.16), transparent 60%);
+    pointer-events:none;
+  }
+  .cabinet{
+    position:absolute;
+    left:6%;right:6%;top:30%;bottom:8%;
+    display:flex;
+    flex-direction:column;
+  }
+  .worktop{
+    height:9%;
+    border-radius:2px 2px 0 0;
+    box-shadow:0 3px 8px rgba(0,0,0,0.35);
+    position:relative;
+    z-index:2;
+  }
+  .cab-row{
+    display:flex;
+    gap:2%;
+    height:52%;
+  }
+  .cab-door{
+    flex:1;
+    position:relative;
+    border-radius:1px;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,0.18), inset 0 10px 18px rgba(255,255,255,0.06), inset 0 -14px 20px rgba(0,0,0,0.15);
+  }
+  .cab-drawer{
+    height:16%;
+    margin-top:2%;
+    position:relative;
+    border-radius:1px;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,0.18), inset 0 6px 10px rgba(255,255,255,0.06), inset 0 -8px 14px rgba(0,0,0,0.15);
+  }
+  .kickboard{
+    height:8%;
+    margin-top:2%;
+    background:linear-gradient(180deg, #10181a, #0b1112);
+    border-radius:0 0 2px 2px;
+  }
+  .kickboard-old{
+    background:linear-gradient(180deg, #8f8768, #6e6850);
+  }
+  .handle{
+    position:absolute;
+    top:14%;
+    right:10%;
+    width:5px;
+    height:24%;
+    border-radius:2px;
+    background:linear-gradient(180deg, #e7c98f, #a9803f);
+    box-shadow:0 1px 3px rgba(0,0,0,0.4);
+  }
+  .handle-old{
+    background:linear-gradient(180deg, #b8b092, #8f886c);
+  }
+  .handle-h{
+    top:38%;right:auto;left:8%;
+    width:26%;height:6px;
+  }
+  .stain{
+    position:absolute;
+    width:22%;height:16%;
+    border-radius:50%;
+    background:radial-gradient(ellipse, rgba(120,95,45,0.22), transparent 70%);
+  }
+  .stain.s1{top:20%;left:15%;}
+  .stain.s2{bottom:16%;right:20%;}
+
+  .cabinet-after{z-index:1;}
+  .cabinet-after .sheen{
+    position:absolute;inset:0;
+    background:linear-gradient(120deg, rgba(255,255,255,0.10) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.05) 100%);
+    pointer-events:none;
+    mix-blend-mode:overlay;
+  }
+  .cabinet-before{
+    z-index:3;
+    clip-path:inset(0 0% 0 0);
+    filter:saturate(0.92) brightness(0.97);
+  }
+
+  .kitchen-edge{
+    position:absolute;top:0;bottom:0;width:2px;
+    background:var(--copper-light);
+    box-shadow:0 0 14px rgba(212,165,116,0.85);
+    z-index:4;
+    pointer-events:none;
+  }
+  .kitchen-tag{
+    position:absolute;
+    bottom:5%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    background:rgba(22,35,43,0.72);
+    padding:5px 10px;
+    border-radius:var(--radius);
+    z-index:5;
+    transition:opacity .25s;
+  }
+  .kitchen-tag.left{left:6%;}
+  .kitchen-tag.right{right:6%;}
+
+  /* === FILMS VITRAGE GRID === */
+  .films-grid{
+    display:grid;grid-template-columns:repeat(3, 1fr);
+    gap:1px;background:var(--line);border:1px solid var(--line);
+  }
+  @media(max-width:900px){.films-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.films-grid{grid-template-columns:1fr;}}
+  .film-card{
+    background:var(--navy);padding:36px 30px;transition:background .25s;
+  }
+  .film-card:hover{background:var(--navy-2);}
+  .film-icon{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);color:var(--copper-light);
+    font-family:'JetBrains Mono', monospace;font-size:0.85rem;
+    margin-bottom:18px;
+  }
+  .film-card h3{font-size:1.12rem;margin-bottom:10px;}
+  .film-card p{opacity:0.68;font-size:0.9rem;}
+  .film-card .aud{
+    margin-top:16px;font-family:'JetBrains Mono', monospace;
+    font-size:0.66rem;letter-spacing:0.05em;text-transform:uppercase;
+    color:var(--copper-light);opacity:0.85;
+  }
+
+  /* === SIGNATURE INTERACTIVE: WINDOW SLIDER === */
+  .demo-section{background:var(--navy-2);}
+  .demo-layout{
+    display:grid;grid-template-columns:0.82fr 1.18fr;gap:60px;align-items:center;
+  }
+  @media(max-width:960px){.demo-layout{grid-template-columns:1fr;gap:44px;}}
+  .demo-copy h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-top:16px;}
+  .demo-copy p{opacity:0.75;margin-top:16px;max-width:420px;}
+  .demo-legend{margin-top:30px;display:flex;flex-direction:column;gap:12px;}
+  .demo-legend .row{display:flex;align-items:center;gap:12px;font-size:0.85rem;opacity:0.8;}
+  .demo-legend .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .dot.hot{background:#D9704A;}
+  .dot.cool{background:#5A8F8B;}
+
+  .window-stage{
+    position:relative;aspect-ratio:4/3;border-radius:var(--radius);
+    overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 30px 70px -25px rgba(0,0,0,0.5);
+    user-select:none;background:#0e1a20;
+  }
+  .window-stage .sky{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, #d8ecf2 0%, #f4e2ba 55%, #e8c896 100%);
+  }
+  .window-stage .sun{
+    position:absolute;top:14%;right:16%;width:66px;height:66px;border-radius:50%;
+    background:radial-gradient(circle, #FFF3D0 0%, #FFD873 55%, rgba(255,216,115,0) 75%);
+    transition:opacity .3s;
+  }
+  .window-stage .heat-shimmer{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(255,180,90,0.22), transparent 55%);
+    mix-blend-mode:overlay;transition:opacity .3s;
+  }
+  .window-stage .frame{
+    position:absolute;inset:0;border:13px solid #1a1410;box-sizing:border-box;pointer-events:none;
+  }
+  .window-stage .mullion-v{
+    position:absolute;top:13px;bottom:13px;left:50%;width:9px;margin-left:-4.5px;
+    background:#1a1410;pointer-events:none;
+  }
+  .window-stage .mullion-h{
+    position:absolute;left:13px;right:13px;top:50%;height:9px;margin-top:-4.5px;
+    background:#1a1410;pointer-events:none;
+  }
+  .filter-layer{
+    position:absolute;inset:0;
+    background:linear-gradient(155deg, rgba(24,54,58,0.82), rgba(20,42,46,0.7));
+    pointer-events:none;
+  }
+  .filter-layer::after{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 10px);
+  }
+  .filter-edge{
+    position:absolute;top:0;bottom:0;width:2px;
+    background:var(--copper-light);box-shadow:0 0 12px rgba(212,165,116,0.8);
+    pointer-events:none;
+  }
+  .thermo-box{
+    position:absolute;left:20px;bottom:20px;display:flex;align-items:flex-end;gap:10px;z-index:5;
+  }
+  .thermo-tube{
+    width:13px;height:104px;border-radius:7px;
+    background:rgba(255,255,255,0.24);border:1px solid rgba(255,255,255,0.48);
+    position:relative;overflow:hidden;
+  }
+  .thermo-fill{
+    position:absolute;bottom:0;left:0;right:0;
+    border-radius:0 0 7px 7px;transition:height .25s ease, background .25s ease;
+  }
+  .thermo-bulb{
+    width:24px;height:24px;border-radius:50%;background:#D9704A;
+    border:1px solid rgba(255,255,255,0.48);margin-bottom:-5px;
+    transition:background .25s ease;
+  }
+  .thermo-reading{
+    background:rgba(22,35,43,0.86);border:1px solid var(--line);
+    border-radius:var(--radius);padding:9px 13px;font-family:'JetBrains Mono', monospace;
+  }
+  .thermo-reading .val{font-size:1.5rem;font-weight:700;color:var(--cream);line-height:1;}
+  .thermo-reading .cap{font-size:0.6rem;letter-spacing:0.09em;text-transform:uppercase;opacity:0.55;margin-top:4px;}
+
+  .slider-control{margin-top:24px;}
+  .slider-labels{
+    display:flex;justify-content:space-between;font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;opacity:0.6;margin-bottom:10px;
+  }
+  input[type="range"]{-webkit-appearance:none;width:100%;height:2px;background:var(--line);outline:none;border-radius:2px;}
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--copper-light);border:3px solid var(--navy-2);
+    box-shadow:0 0 0 1px var(--copper-light);cursor:pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:18px;height:18px;border-radius:50%;background:var(--copper-light);
+    border:3px solid var(--navy-2);cursor:pointer;
+  }
+
+  /* === PHOTO TRY-ON TOOL === */
+  .try-cta{margin-top:28px;}
+  .photo-tool{
+    grid-column:1/-1;margin-top:56px;padding-top:56px;border-top:1px solid var(--line);
+    display:none;
+  }
+  .photo-tool.open{display:block;}
+  .photo-tool-head{max-width:620px;margin-bottom:32px;}
+  .photo-tool-head h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;}
+  .photo-tool-head p{opacity:0.75;margin-top:10px;font-size:0.92rem;}
+  .photo-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:start;}
+  @media(max-width:900px){.photo-grid{grid-template-columns:1fr;}}
+
+  .photo-dropzone{
+    border:1px dashed var(--line);border-radius:var(--radius);
+    padding:48px 24px;text-align:center;background:rgba(243,236,224,0.02);
+    transition:border-color .2s, background .2s;cursor:pointer;
+  }
+  .photo-dropzone:hover, .photo-dropzone.drag{
+    border-color:var(--copper-light);background:rgba(184,121,74,0.06);
+  }
+  .photo-dropzone svg{opacity:0.6;margin-bottom:14px;}
+  .photo-dropzone .dz-title{font-weight:600;font-size:0.95rem;}
+  .photo-dropzone .dz-sub{opacity:0.6;font-size:0.8rem;margin-top:6px;}
+
+  .photo-stage{
+    touch-action:none;
+    position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+    border-radius:var(--radius);border:1px solid var(--line);background:#0e1519;
+  }
+  #photoBase{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  }
+  /*
+    .photo-texture — calque de texture affiché par-dessus #photoBase.
+    background-image = la finition choisie (swatch), mix-blend-mode fusionne
+    avec les ombres de la photo, mask-image = zone détectée par Gemini
+    (rectangle(s) feathered générés en JS depuis les coordonnées renvoyées
+    par /api/detect-surface).
+  */
+  .photo-texture{
+    position:absolute;inset:0;width:100%;height:100%;
+    background-size:cover;background-position:center;
+    mix-blend-mode:overlay;
+    filter:contrast(1.12) saturate(1.12) brightness(1.03);
+    visibility:hidden;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-size:100% 100%;mask-size:100% 100%;
+    -webkit-mask-position:center;mask-position:center;
+  }
+  .click-hint{
+    font-size:0.72rem;opacity:0.6;margin-top:12px;letter-spacing:0.02em;
+  }
+  .mask-status{font-family:'JetBrains Mono', monospace;font-size:0.68rem;opacity:0.6;}
+
+  /* --- Mode édition des zones détectées --- */
+  .zone-overlay{
+    position:absolute;inset:0;pointer-events:none;display:none;
+  }
+  .photo-stage.edit-mode .zone-overlay{pointer-events:auto;display:block;}
+  .photo-stage.edit-mode #photoTexture{opacity:0.35;}
+  .zone-box{
+    position:absolute;box-sizing:border-box;
+    border:1.5px solid rgba(212,165,116,0.9);
+    background:rgba(212,165,116,0.14);
+    cursor:pointer;transition:background .15s, border-color .15s;
+  }
+  .photo-stage.edit-mode .zone-box:hover{
+    background:rgba(212,165,116,0.3);
+  }
+  .zone-box.excluded{
+    border-color:rgba(220,80,70,0.85);
+    background:repeating-linear-gradient(
+      45deg, rgba(220,80,70,0.18), rgba(220,80,70,0.18) 6px,
+      rgba(220,80,70,0.06) 6px, rgba(220,80,70,0.06) 12px
+    );
+  }
+  .zone-box::after{
+    content:'✕';position:absolute;top:2px;right:3px;
+    font-size:0.7rem;color:rgba(220,80,70,0.95);opacity:0;
+    transition:opacity .15s;
+  }
+  .zone-box.excluded::after{opacity:1;}
+  .zone-box.manual{
+    border-color:rgba(110,170,220,0.9);
+    background:rgba(110,170,220,0.14);
+  }
+  .photo-stage.edit-mode .zone-box.manual:hover{
+    background:rgba(110,170,220,0.3);
+  }
+  .zone-box.manual.excluded{
+    border-color:rgba(220,80,70,0.85);
+  }
+  .zone-draw-preview{
+    position:absolute;box-sizing:border-box;pointer-events:none;
+    border:1.5px dashed rgba(110,170,220,0.95);
+    background:rgba(110,170,220,0.18);
+  }
+  .edit-hint{
+    font-size:0.72rem;opacity:0.65;margin-top:8px;display:none;
+  }
+  .edit-hint.show{display:block;}
+  .photo-before{width:100%;height:100%;object-fit:cover;clip-path:inset(0 0 0 0);}
+  .photo-edge{
+    position:absolute;top:0;bottom:0;width:2px;left:0%;
+    background:var(--copper-light);box-shadow:0 0 12px rgba(212,165,116,0.8);
+    pointer-events:none;
+  }
+  .photo-tag{
+    position:absolute;bottom:16px;font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;
+    background:rgba(22,35,43,0.72);padding:6px 10px;border-radius:var(--radius);
+    transition:opacity .2s;
+  }
+  .photo-tag.left{left:16px;}
+  .photo-tag.right{right:16px;}
+  .photo-processing{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(14,21,25,0.72);font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--copper-light);opacity:0;pointer-events:none;transition:opacity .15s;
+  }
+  .photo-processing.show{opacity:1;}
+
+  .swatch-picker{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px;
+  }
+  .swatch-opt{
+    aspect-ratio:1/1;border-radius:var(--radius);border:2px solid transparent;
+    cursor:pointer;position:relative;transition:border-color .15s, transform .15s;
+  }
+  .swatch-opt:hover{transform:translateY(-2px);}
+  .swatch-opt.active{border-color:var(--copper-light);}
+  .swatch-opt .sw-lbl{
+    position:absolute;left:0;right:0;bottom:0;padding:4px 6px;
+    font-family:'JetBrains Mono', monospace;font-size:0.55rem;letter-spacing:0.03em;
+    text-transform:uppercase;background:rgba(22,35,43,0.78);text-align:center;
+    display:flex;flex-direction:column;gap:1px;
+  }
+  .swatch-opt .sw-code{opacity:0.6;font-size:0.5rem;letter-spacing:0.06em;}
+  .photo-tool-actions{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;}
+
+  /* === PROCESS === */
+  .process-list{display:flex;flex-direction:column;}
+  .process-item{
+    display:grid;grid-template-columns:80px 1fr;gap:30px;
+    padding:34px 0;border-top:1px solid var(--line);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-item .idx{font-family:'Fraunces', serif;font-size:1.9rem;color:rgba(243,236,224,0.18);}
+  .process-item h4{font-size:1.15rem;margin-bottom:8px;}
+  .process-item p{opacity:0.72;max-width:560px;font-size:0.93rem;}
+
+  /* === CONTACT === */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .field{margin-bottom:20px;}
+  .field label{
+    display:block;font-size:0.73rem;letter-spacing:0.06em;
+    text-transform:uppercase;opacity:0.6;margin-bottom:8px;
+  }
+  .field input, .field textarea, .field select{
+    width:100%;background:transparent;border:1px solid var(--line);color:var(--cream);
+    padding:13px 15px;font-family:inherit;font-size:0.94rem;border-radius:var(--radius);
+  }
+  .field textarea{resize:vertical;min-height:100px;}
+  .field input:focus, .field textarea:focus, .field select:focus{outline:none;border-color:var(--copper-light);}
+  .contact-info-item{display:flex;gap:16px;margin-bottom:26px;align-items:flex-start;}
+  .contact-info-item .ic{
+    width:36px;height:36px;border:1px solid var(--line);border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:var(--copper-light);
+    font-family:'JetBrains Mono', monospace;font-size:0.72rem;
+  }
+  .contact-info-item h4{font-size:0.98rem;margin-bottom:4px;font-family:'Work Sans';font-weight:600;}
+  .contact-info-item p{opacity:0.68;font-size:0.89rem;}
+
+  /* === FOOTER === */
+  footer{padding:54px 0 36px;}
+  .footer-top{
+    display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;
+    gap:28px;padding-bottom:36px;border-bottom:1px solid var(--line);
+  }
+  .footer-bottom{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    padding-top:28px;font-size:0.78rem;opacity:0.55;
+  }
+  .footer-links{display:flex;gap:30px;font-size:0.85rem;}
+
+  ::selection{background:var(--copper);color:var(--navy);}
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--copper-light);outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Breizh <span>Cover</span></div>
+    <div class="navlinks">
+      <a href="#mobilier">Mobilier</a>
+      <a href="#films">Films de vitrage</a>
+      <a href="#demo">Démo solaire</a>
+      <a href="#procede">Le procédé</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Devis gratuit</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Covering & films de vitrage — Bretagne</div>
+      <h1>Une nouvelle finition<br>pour vos <em>meubles</em><br>et vos <em>vitrages</em>.</h1>
+      <p class="lead">Breizh Cover habille votre mobilier et pose des films de protection sur vos vitrages — sans démolition, avec des matériaux professionnels et une pose soignée.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Demander un devis</a>
+        <a href="#demo" class="btn-ghost">Voir la démo solaire ↓</a>
+      </div>
+    </div>
+    <div class="hero-swatches">
+      <div class="swatch-tile tx-wood"><div class="lbl">Noyer</div></div>
+      <div class="swatch-tile tx-oak"><div class="lbl">Chêne clair</div></div>
+      <div class="swatch-tile tx-marble wide"><div class="lbl">Marbre veiné</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="partners">
+  <div class="wrap partners-inner">
+    <span class="partners-label">Matériaux posés</span>
+    <span class="partner-badge">Coverstyle <span class="tag">Films & finitions</span></span>
+    <span class="partner-badge">Solar Screen <span class="tag">Films de vitrage</span></span>
+  </div>
+</section>
+
+<section id="mobilier">
+  <div class="wrap">
+    <div class="mobilier-block">
+      <div class="mobilier-copy reveal">
+        <div class="eyebrow">Mobilier</div>
+        <h2 style="font-size:clamp(1.9rem,3.2vw,2.5rem);margin-top:16px;">Covering de meubles</h2>
+        <p>Cuisines, plans de travail, portes de placards, façades de meubles : on habille vos surfaces existantes avec des films effet bois, marbre, béton ou teintes unies — sans changer une seule pièce.</p>
+        <div class="mobilier-list">
+          <div class="row"><span>Cuisines & plans de travail</span><span>Films Coverstyle</span></div>
+          <div class="row"><span>Portes & façades de placards</span><span>Films Coverstyle</span></div>
+          <div class="row"><span>Mobilier de bureau</span><span>Films Coverstyle</span></div>
+          <div class="row"><span>Finitions bois, marbre, béton, unies</span><span>Sur devis</span></div>
+        </div>
+        <div class="try-cta">
+          <button class="btn-primary" id="tryPhotoBtn" style="border:none;">Essayer sur votre image →</button>
+        </div>
+      </div>
+      <div class="kitchen-demo reveal">
+        <div class="kitchen-stage" id="kitchenStage">
+          <div class="kitchen-room"></div>
+          <div class="kitchen-light"></div>
+
+          <!-- APRÈS : meuble recouvert (couche du dessous, toujours visible) -->
+          <div class="cabinet cabinet-after">
+            <div class="worktop tx-marble"></div>
+            <div class="cab-row">
+              <div class="cab-door tx-wood"><div class="handle"></div></div>
+              <div class="cab-door tx-wood"><div class="handle"></div></div>
+              <div class="cab-door tx-wood"><div class="handle"></div></div>
+            </div>
+            <div class="cab-drawer tx-oak"><div class="handle handle-h"></div></div>
+            <div class="kickboard"></div>
+            <div class="sheen"></div>
+          </div>
+
+          <!-- AVANT : meuble blanc jauni (couche du dessus, se rétracte au glissement) -->
+          <div class="cabinet cabinet-before" id="kitchenBefore">
+            <div class="worktop tx-old-counter"></div>
+            <div class="cab-row">
+              <div class="cab-door tx-old-white"><div class="handle handle-old"></div><div class="stain s1"></div></div>
+              <div class="cab-door tx-old-white"><div class="handle handle-old"></div><div class="stain s2"></div></div>
+              <div class="cab-door tx-old-white"><div class="handle handle-old"></div></div>
+            </div>
+            <div class="cab-drawer tx-old-white"><div class="handle handle-h handle-old"></div></div>
+            <div class="kickboard kickboard-old"></div>
+          </div>
+
+          <div class="kitchen-edge" id="kitchenEdge" style="left:0%;"></div>
+
+          <div class="kitchen-tag left" id="tagBefore">AVANT</div>
+          <div class="kitchen-tag right" id="tagAfter">APRÈS — FILMS COVERSTYLE</div>
+        </div>
+
+        <div class="slider-control">
+          <div class="slider-labels">
+            <span>Meuble d'origine</span>
+            <span>Après covering</span>
+          </div>
+          <input type="range" min="0" max="100" value="0" id="kitchenSlider" aria-label="Faire glisser pour voir le rendu après covering">
+        </div>
+      </div>
+
+      <div class="photo-tool" id="photoTool">
+        <div class="photo-tool-head">
+          <div class="eyebrow">Essai virtuel</div>
+          <h3 style="margin-top:12px;">Essayez un revêtement sur votre propre meuble</h3>
+          <p>Envoyez une photo de votre cuisine ou de vos façades : une IA (Google Gemini) repère la surface principale du meuble, puis la texture réelle du film Coverstyl choisi est appliquée — uniquement sur cette zone — en conservant les ombres et reliefs de votre photo. La détection est automatique mais reste indicative — pour un rendu exact, un poseur passe évaluer le meuble sur place.</p>
+        </div>
+
+        <div class="photo-grid">
+          <div>
+            <div class="photo-dropzone" id="photoDropzone" tabindex="0" role="button" aria-label="Importer une photo">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              <div class="dz-title">Glissez une photo ici, ou cliquez pour en choisir une</div>
+              <div class="dz-sub">JPG, PNG</div>
+              <input type="file" id="photoInput" accept="image/*" hidden>
+            </div>
+
+            <div id="photoResult" hidden>
+              <div class="photo-stage" id="photoStage">
+                <img id="photoBase" alt="Photo d'origine">
+                <div class="photo-texture" id="photoTexture"></div>
+                <div class="zone-overlay" id="zoneOverlay"></div>
+                <div class="photo-processing" id="photoProcessing">Détection de la zone…</div>
+              </div>
+              <div class="click-hint mono" id="clickHint">Choisissez une teinte à droite, puis cliquez sur « Appliquer le revêtement ». La zone du meuble est repérée par une IA (Gemini).</div>
+              <div class="edit-hint mono" id="editHint">Cliquez sur une zone pour l'inclure/l'exclure. Cliquez-glissez sur une zone vide pour en dessiner une nouvelle à la main. Double-cliquez sur une zone pour la supprimer définitivement. Puis « Valider les zones ».</div>
+              <div class="photo-tool-actions">
+                <button class="btn-primary" id="generateBtn" type="button">Appliquer le revêtement</button>
+                <button class="btn-ghost" id="editZonesBtn" type="button" hidden>Ajuster les zones détectées</button>
+                <button class="btn-ghost" id="beforeToggleBtn">Voir la photo d'origine</button>
+                <button class="btn-ghost" id="photoChangeBtn">Changer de photo</button>
+              </div>
+              <div class="mask-status" id="genStatus" style="margin-top:10px;opacity:0.7;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="mono" style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">Choisissez une teinte</div>
+            <div class="swatch-picker" id="swatchPicker"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="films">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Films de vitrage</div>
+      <h2>Cinq usages, un même savoir-faire de pose.</h2>
+      <p>Au-delà du confort thermique, les films de vitrage répondent à des besoins très différents — confidentialité, discrétion, sécurité ou protection. On vous conseille selon votre usage.</p>
+    </div>
+    <div class="films-grid">
+      <div class="film-card reveal">
+        <div class="film-icon">☀</div>
+        <h3>Film solaire</h3>
+        <p>Réduit la chaleur et l'éblouissement en été, filtre les UV, préserve le confort intérieur sans occulter la vue.</p>
+        <div class="aud">Particuliers & entreprises</div>
+      </div>
+      <div class="film-card reveal">
+        <div class="film-icon">▤</div>
+        <h3>Anti-vis-à-vis écrans</h3>
+        <p>Empêche de voir les écrans depuis l'extérieur tout en laissant entrer la lumière — pensé pour les bureaux et open spaces exposés aux regards.</p>
+        <div class="aud">Entreprises</div>
+      </div>
+      <div class="film-card reveal">
+        <div class="film-icon">◐</div>
+        <h3>Film occultant</h3>
+        <p>Assombrit la vitre pour empêcher toute vue depuis l'extérieur, de jour comme de nuit, sans poser de rideaux ou de stores.</p>
+        <div class="aud">Particuliers & entreprises</div>
+      </div>
+      <div class="film-card reveal">
+        <div class="film-icon">✕</div>
+        <h3>Film anti-tag</h3>
+        <p>Se pose comme une protection sacrificielle sur la vitre : en cas de tag ou de dégradation, on retire simplement le film au lieu de remplacer le vitrage.</p>
+        <div class="aud">Commerces & entreprises</div>
+      </div>
+      <div class="film-card reveal">
+        <div class="film-icon">◆</div>
+        <h3>Film anti-effraction</h3>
+        <p>Renforce la tenue de la vitre face aux chocs et tentatives d'intrusion — un vitrage qui résiste mieux, même face à un impact violent.</p>
+        <div class="aud">Commerces & entreprises</div>
+      </div>
+      <div class="film-card reveal">
+        <div class="film-icon">＋</div>
+        <h3>Sur mesure</h3>
+        <p>Une combinaison de plusieurs besoins (solaire + occultant, par exemple) ? On étudie chaque projet au cas par cas.</p>
+        <div class="aud">Tous profils</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo" class="demo-section">
+  <div class="wrap">
+    <div class="demo-layout">
+      <div class="demo-copy reveal">
+        <div class="eyebrow">Démonstration</div>
+        <h2>Faites glisser le film solaire.</h2>
+        <p>À gauche, une vitre nue en plein soleil. Déplacez le curseur pour poser le film et observez la température ressentie diminuer sur le thermomètre.</p>
+        <div class="demo-legend">
+          <div class="row"><span class="dot hot"></span> Vitre nue — rayonnement direct</div>
+          <div class="row"><span class="dot cool"></span> Film posé — chaleur filtrée</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="window-stage" id="windowStage">
+          <div class="sky"></div>
+          <div class="heat-shimmer" id="heatShimmer"></div>
+          <div class="sun" id="sunEl"></div>
+          <div class="filter-layer" id="filterLayer" style="clip-path:inset(0 100% 0 0);"></div>
+          <div class="filter-edge" id="filterEdge" style="left:0%;"></div>
+          <div class="mullion-v"></div>
+          <div class="mullion-h"></div>
+          <div class="frame"></div>
+
+          <div class="thermo-box">
+            <div class="thermo-tube">
+              <div class="thermo-fill" id="thermoFill" style="height:88%;"></div>
+            </div>
+            <div class="thermo-bulb" id="thermoBulb"></div>
+            <div class="thermo-reading">
+              <div class="val mono" id="thermoVal">42°C</div>
+              <div class="cap">Ressenti vitre</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-control">
+          <div class="slider-labels">
+            <span>Vitre nue</span>
+            <span>Film 100% posé</span>
+          </div>
+          <input type="range" min="0" max="100" value="0" id="filterSlider" aria-label="Position du film solaire">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="procede">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Le procédé</div>
+      <h2>Comment se déroule un chantier.</h2>
+      <p>Un déroulé simple, pensé pour vous laisser le temps de choisir sans mauvaise surprise sur le résultat final.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <div class="idx mono">01</div>
+        <div>
+          <h4>Visite technique offerte</h4>
+          <p>On se déplace pour examiner votre meuble ou votre vitrage et vous dire clairement s'il peut être covering ou équipé d'un film — sans engagement.</p>
+        </div>
+      </div>
+      <div class="process-item reveal">
+        <div class="idx mono">02</div>
+        <div>
+          <h4>Devis sur mesure</h4>
+          <p>On établit un devis adapté à votre budget, au type de covering ou de film souhaité, avec les conseils d'un professionnel pour affiner le choix.</p>
+        </div>
+      </div>
+      <div class="process-item reveal">
+        <div class="idx mono">03</div>
+        <div>
+          <h4>Récupération du meuble</h4>
+          <p>Pour le mobilier, on récupère les pièces concernées afin de les habiller en atelier, dans de bonnes conditions de pose.</p>
+        </div>
+      </div>
+      <div class="process-item reveal">
+        <div class="idx mono">04</div>
+        <div>
+          <h4>Pose & livraison</h4>
+          <p>Installation soignée sur site pour les vitrages, ou livraison du meuble prêt à être reposé chez vous.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Contact</div>
+        <h2 style="margin-top:16px;font-size:clamp(1.8rem,3vw,2.3rem);">Parlons de votre projet.</h2>
+        <p style="opacity:0.72;margin-top:16px;max-width:420px;">Meuble à couvrir, vitrage à protéger — décrivez votre besoin et on revient vers vous après une visite technique offerte.</p>
+
+        <div style="margin-top:42px;">
+          <div class="contact-info-item">
+            <div class="ic">@</div>
+            <div><h4>Email</h4><p>contact@breizhcover.fr</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ic">☎</div>
+            <div><h4>Téléphone</h4><p>02 98 00 00 00</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ic">◎</div>
+            <div><h4>Zone d'intervention</h4><p>Brest et toute la Bretagne</p></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('.form-confirm').style.display='block'; this.querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=true);">
+        <div class="field">
+          <label for="f-name">Nom complet</label>
+          <input id="f-name" type="text" required placeholder="Jean Le Gall">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" required placeholder="jean@exemple.fr">
+        </div>
+        <div class="field">
+          <label for="f-type">Type de projet</label>
+          <select id="f-type">
+            <option>Covering mobilier</option>
+            <option>Film solaire</option>
+            <option>Film anti-vis-à-vis écrans</option>
+            <option>Film occultant</option>
+            <option>Film anti-tag</option>
+            <option>Film anti-effraction</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Votre projet</label>
+          <textarea id="f-msg" required placeholder="Décrivez la surface, les dimensions approximatives, la finition envisagée..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none;width:100%;">Envoyer la demande</button>
+        <p class="form-confirm" style="display:none;margin-top:16px;color:var(--copper-light);font-size:0.87rem;">Merci — votre demande a bien été enregistrée. Nous revenons vers vous rapidement.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="logo">Breizh <span>Cover</span></div>
+        <p style="opacity:0.6;font-size:0.87rem;margin-top:14px;max-width:280px;">Covering de mobilier et pose de films de vitrage, partout en Bretagne.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#mobilier">Mobilier</a>
+        <a href="#films">Films de vitrage</a>
+        <a href="#procede">Le procédé</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Breizh Cover — Tous droits réservés</span>
+      <span>Site conçu en Bretagne</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  const slider = document.getElementById('filterSlider');
+  const filterLayer = document.getElementById('filterLayer');
+  const filterEdge = document.getElementById('filterEdge');
+  const thermoFill = document.getElementById('thermoFill');
+  const thermoBulb = document.getElementById('thermoBulb');
+  const thermoVal = document.getElementById('thermoVal');
+  const sunEl = document.getElementById('sunEl');
+  const heatShimmer = document.getElementById('heatShimmer');
+
+  const TEMP_MAX = 42;
+  const TEMP_MIN = 24;
+
+  function lerpColor(t){
+    const hot = [217,112,74];
+    const cool = [90,143,139];
+    const r = Math.round(hot[0] + (cool[0]-hot[0])*t);
+    const g = Math.round(hot[1] + (cool[1]-hot[1])*t);
+    const b = Math.round(hot[2] + (cool[2]-hot[2])*t);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function updateDemo(val){
+    const pct = val / 100;
+    filterLayer.style.clipPath = `inset(0 ${100-val}% 0 0)`;
+    filterEdge.style.left = val + '%';
+    filterEdge.style.opacity = (val > 1 && val < 99) ? '1' : '0';
+
+    const temp = Math.round(TEMP_MAX - (TEMP_MAX-TEMP_MIN)*pct);
+    thermoVal.textContent = temp + '°C';
+
+    const fillPct = 20 + ((temp - TEMP_MIN)/(TEMP_MAX-TEMP_MIN)) * 70;
+    thermoFill.style.height = fillPct + '%';
+
+    const col = lerpColor(pct);
+    thermoFill.style.background = col;
+    thermoBulb.style.background = col;
+
+    sunEl.style.opacity = 1 - pct*0.7;
+    heatShimmer.style.opacity = 1 - pct;
+  }
+
+  slider.addEventListener('input', (e)=> updateDemo(Number(e.target.value)));
+  updateDemo(0);
+
+  // Kitchen cabinet before/after demo
+  const kSlider = document.getElementById('kitchenSlider');
+  const kBefore = document.getElementById('kitchenBefore');
+  const kEdge = document.getElementById('kitchenEdge');
+  const tagBefore = document.getElementById('tagBefore');
+  const tagAfter = document.getElementById('tagAfter');
+
+  function updateKitchen(val){
+    // val = 0 (meuble d'origine visible à 100%) -> 100 (après covering visible à 100%)
+    kBefore.style.clipPath = `inset(0 0 0 ${val}%)`;
+    kEdge.style.left = val + '%';
+    kEdge.style.opacity = (val > 1 && val < 99) ? '1' : '0';
+    tagBefore.style.opacity = val < 92 ? '1' : '0';
+    tagAfter.style.opacity = val > 8 ? '1' : '0';
+  }
+
+  kSlider.addEventListener('input', (e)=> updateKitchen(Number(e.target.value)));
+  updateKitchen(0);
+
+  // === Photo try-on tool ===
+  // Détection gratuite : on envoie la photo à notre backend, qui interroge
+  // Gemini 2.5 Flash (gratuit, contrairement à gemini-2.5-flash-image qui
+  // génère des images et est payant) pour repérer la ou les zones du
+  // meuble. Le modèle renvoie des rectangles (en %), qu'on transforme en
+  // masque N&B côté client — le rendu final reste un simple calque CSS
+  // (texture + mix-blend-mode + mask-image), comme avant, mais guidé par
+  // une vraie IA au lieu d'un clustering de couleurs local.
+  (function(){
+    const tryBtn = document.getElementById('tryPhotoBtn');
+    const tool = document.getElementById('photoTool');
+    const dropzone = document.getElementById('photoDropzone');
+    const input = document.getElementById('photoInput');
+    const resultBox = document.getElementById('photoResult');
+    const photoStage = document.getElementById('photoStage');
+    const photoBase = document.getElementById('photoBase');
+    const photoTexture = document.getElementById('photoTexture');
+    const processing = document.getElementById('photoProcessing');
+    const changeBtn = document.getElementById('photoChangeBtn');
+    const beforeToggleBtn = document.getElementById('beforeToggleBtn');
+    const swatchPicker = document.getElementById('swatchPicker');
+    const generateBtn = document.getElementById('generateBtn');
+    const genStatus = document.getElementById('genStatus');
+    const zoneOverlay = document.getElementById('zoneOverlay');
+    const editZonesBtn = document.getElementById('editZonesBtn');
+    const editHint = document.getElementById('editHint');
+
+    // ⚠️ Clé API Gemini appelée directement depuis le navigateur (visible dans le code source).
+    // À restreindre par domaine (HTTP referrer) dans Google Cloud Console.
+    const GEMINI_API_KEY = 'AQ.Ab8RN6J6M9Iyj3i3WArc3krCCD7s63VIAK1tCnfJ9M1ANtT6sQ';
+    const GEMINI_MODEL = 'gemini-3.1-flash-lite';
+    const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+    function parseDataUrl(dataUrl){
+      const match = /^data:(.+);base64,(.+)$/.exec(dataUrl || '');
+      if(!match) throw new Error('Format de data URL invalide.');
+      return { mimeType: match[1], base64: match[2] };
+    }
+
+    function extractBoxesFromText(text){
+      const cleaned = String(text || '').replace(/```json|```/g, '').trim();
+      let parsed;
+      try{ parsed = JSON.parse(cleaned); } catch(e){ throw new Error('Réponse du modèle non-JSON : ' + cleaned.slice(0,200)); }
+      const rawBoxes = Array.isArray(parsed) ? parsed : parsed.boxes;
+      if(!Array.isArray(rawBoxes)) throw new Error('Le JSON ne contient pas de tableau "boxes".');
+
+      return rawBoxes
+        .map(b => {
+          let x = Number(b.x);
+          let y = Number(b.y);
+          let w = Number(b.w);
+          let h = Number(b.h);
+          if (x > 1 || y > 1 || w > 1 || h > 1) {
+            x = x / 1000; y = y / 1000; w = w / 1000; h = h / 1000;
+          }
+          return { x, y, w, h };
+        })
+        .filter(b =>
+          [b.x, b.y, b.w, b.h].every(n => Number.isFinite(n) && n >= 0 && n <= 1) &&
+          b.w > 0.01 && b.h > 0.01
+        );
+    }
+
+    async function detectSurface(photoDataUrl){
+      const clientPhoto = parseDataUrl(photoDataUrl);
+
+      const prompt = [
+        "Tu es un système de vision par ordinateur de haute précision spécialisé dans le détourage de façades de meubles (portes et tiroirs).",
+        "",
+        "RÈGLE D'OR : tu ne dessines une boîte QUE si tu peux pointer un bord physique réel et continu dans l'image (un joint entre deux façades, une poignée, une charnière, un cadre). Si tu hésites entre 'il y a peut-être un meuble ici' et 'je ne vois pas de bord net', tu NE crées PAS la boîte. Le silence (aucune boîte) est toujours préférable à une boîte inventée.",
+        "",
+        "INTERDIT : déduire une boîte par symétrie, par répétition de motif, ou par logique d'ameublement ('il devrait y avoir une porte ici car la colonne d'à côté en a une'). Chaque boîte est justifiée uniquement par ce qui est visible dans CETTE image précise, jamais par une supposition générale sur les cuisines.",
+        "",
+        "ÉTAPE 1 — BALAYAGE (silencieux) : parcours l'image de GAUCHE À DROITE, colonne par colonne, jusqu'au bord droit inclus. Note chaque porte/tiroir dont tu vois clairement les 4 bords ou dont les bords sont coupés par le cadre de la photo. Une colonne étroite (bandeau, colonne de finition) collée à un mur ou à un électroménager compte comme une colonne à part entière.",
+        "",
+        "ÉTAPE 2 — DÉTOURAGE : une boîte distincte par porte/tiroir individuel, jamais un rectangle englobant plusieurs façades. Aligne chaque bord au pixel près sur le joint réel — s'arrêter avant le joint ou déborder dessus sont deux erreurs équivalentes. Pour les façades étroites (bandeaux, colonnes de finition), vérifie pixel par pixel chaque bord vertical : une erreur de quelques unités y est visible à l'écran alors qu'elle ne l'est pas sur une grande boîte.",
+        "",
+        "PIÈGES À NE PAS MANQUER (mais toujours sous réserve de la RÈGLE D'OR ci-dessus) : (1) une façade fine collée à un four/micro-ondes/frigo reste un meuble à détecter si son bord est visible ; (2) le dernier quart droit et le premier quart gauche de l'image sont les zones les plus souvent oubliées ou, à l'inverse, les plus souvent hallucinées en zone de bordure — vérifie chaque bord avec la même exigence que pour le centre de l'image ; (3) couvre les éléments partiellement coupés par le cadre uniquement si leur bord de joint est réellement visible sur la portion capturée.",
+        "",
+        "EXCLUSIONS STRICTES (jamais de boîte dessus) : plan de travail, crédence, évier, robinet, murs, sol, plafond, la grande niche ouverte centrale en bois, reflets, ombres portées, et TOUS les électroménagers eux-mêmes (four, micro-ondes, plaque, hotte, frigo, lave-vaisselle...).",
+        "",
+        "ÉTAPE 3 — AUTO-VÉRIFICATION (obligatoire, silencieuse, avant de répondre) : reprends ta liste boîte par boîte. Pour chacune, demande-toi 'quel bord précis (joint, poignée, charnière) prouve que cette boîte existe ?'. Si tu ne peux pas répondre par un élément visuel concret et localisé, supprime la boîte immédiatement. Ne renvoie que les boîtes qui survivent à cette vérification.",
+        "",
+        "SYSTÈME DE COORDONNÉES (Échelle 0 à 1000, entiers uniquement) :",
+        "Image = 1000×1000 unités. x/y = coin haut-gauche (0=bord gauche/haut, 1000=bord droit/bas). w/h = largeur/hauteur du rectangle."
+      ].join('\n');
+
+      const body = {
+        contents: [
+          {
+            parts: [
+              { text: prompt },
+              { inline_data: { mime_type: clientPhoto.mimeType, data: clientPhoto.base64 } }
+            ]
+          }
+        ],
+        generationConfig: {
+          temperature: 0,
+          responseMimeType: 'application/json',
+          thinkingConfig: { thinkingLevel: 'HIGH' },
+          maxOutputTokens: 16384,
+          responseSchema: {
+            type: "OBJECT",
+            properties: {
+              boxes: {
+                type: "ARRAY",
+                items: {
+                  type: "OBJECT",
+                  properties: {
+                    x: { type: "INTEGER" },
+                    y: { type: "INTEGER" },
+                    w: { type: "INTEGER" },
+                    h: { type: "INTEGER" }
+                  },
+                  required: ["x", "y", "w", "h"]
+                }
+              }
+            },
+            required: ["boxes"]
+          }
+        }
+      };
+
+      const geminiRes = await fetch(GEMINI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GEMINI_API_KEY },
+        body: JSON.stringify(body)
+      });
+
+      if(!geminiRes.ok){
+        const errText = await geminiRes.text().catch(()=> '');
+        throw new Error(`L'API Gemini a renvoyé une erreur (${geminiRes.status}). ${errText}`);
+      }
+
+      const data = await geminiRes.json();
+      const finishReason = data?.candidates?.[0]?.finishReason;
+      if(finishReason === 'MAX_TOKENS'){
+        throw new Error("La réponse a été coupée avant la fin (budget de tokens dépassé).");
+      }
+      const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text).filter(Boolean).join('\n');
+      if(!text){
+        throw new Error("Pas de résultat exploitable.");
+      }
+
+      return extractBoxesFromText(text);
+    }
+
+    const SWATCHES = [
+      { id:'aa04', code:'AA04', label:'Rich Oak',        material:'Bois clair',    img:'materials/AA04.jpg' },
+      { id:'aa06', code:'AA06', label:'Smoky Oak',       material:'Bois foncé',    img:'materials/AA06.jpg' },
+      { id:'aa02', code:'AA02', label:'Rustic Oak',      material:'Bois medium',   img:'materials/AA02.jpg' },
+      { id:'ab07', code:'AB07', label:'Dark Blue',       material:'Bleu nuit',     img:'materials/AB07.jpg' },
+      { id:'ac01', code:'AC01', label:'White Lined',     material:'Blanc mat',     img:'materials/AC01.jpg' },
+      { id:'ne31', code:'NE31', label:'Statuary White',  material:'Marbre clair',  img:'materials/NE31.jpg' },
+      { id:'mk14', code:'MK14', label:'Grigio Marquina', material:'Marbre foncé',  img:'materials/MK14.jpg' },
+      { id:'ne24', code:'NE24', label:'Raw Grey',        material:'Béton',         img:'materials/NE24.jpg' },
+      { id:'ne26', code:'NE26', label:'Raw Dark',        material:'Anthracite',    img:'materials/NE26.jpg' }
+    ];
+
+    let activeSwatch = SWATCHES[0].id;
+    let sourceDataUrl = null;
+let apiDataUrl = null; //
+    let sourceImg = null;          // pour connaître les dimensions réelles de la photo
+    let cachedBoxes = null;        // dernier résultat de détection (évite de rappeler l'API à chaque changement de teinte)
+    let excludedZones = new Set(); // indices des boîtes désactivées à la main
+    let showingBefore = false;
+
+    swatchPicker.innerHTML = SWATCHES.map((s,i)=>`
+      <div class="swatch-opt${i===0?' active':''}" data-id="${s.id}" style="background-image:url('${s.img}');background-size:cover;background-position:center;" title="${s.material} — réf. ${s.code}">
+        <div class="sw-lbl">${s.label}<span class="sw-code">${s.code}</span></div>
+      </div>`).join('');
+
+    swatchPicker.addEventListener('click', (e)=>{
+      const opt = e.target.closest('.swatch-opt');
+      if(!opt) return;
+      swatchPicker.querySelectorAll('.swatch-opt').forEach(el=>el.classList.remove('active'));
+      opt.classList.add('active');
+      activeSwatch = opt.dataset.id;
+      // On a déjà les zones détectées : pas besoin de rappeler l'IA, juste
+      // ré-appliquer la nouvelle texture sur le même masque.
+      if(cachedBoxes) applySwatch();
+    });
+
+    tryBtn.addEventListener('click', ()=>{
+      tool.classList.add('open');
+      tool.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    dropzone.addEventListener('click', ()=> input.click());
+    dropzone.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' ') input.click(); });
+    ['dragover','dragenter'].forEach(evt=>{
+      dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); dropzone.classList.add('drag'); });
+    });
+    ['dragleave','drop'].forEach(evt=>{
+      dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); dropzone.classList.remove('drag'); });
+    });
+    dropzone.addEventListener('drop', (e)=>{
+      const file = e.dataTransfer.files && e.dataTransfer.files[0];
+      if(file) handleFile(file);
+    });
+    input.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0];
+      if(file) handleFile(file);
+    });
+    changeBtn.addEventListener('click', ()=>{
+      resultBox.hidden = true;
+      dropzone.style.display = '';
+      input.value = '';
+      resetToolState();
+    });
+
+    beforeToggleBtn.addEventListener('click', ()=>{
+      showingBefore = !showingBefore;
+      photoTexture.style.opacity = showingBefore ? '0' : '';
+      beforeToggleBtn.textContent = showingBefore ? 'Voir le résultat' : "Voir la photo d'origine";
+    });
+
+    function resetToolState(){
+      sourceDataUrl = null;
+apiDataUrl = null;
+      sourceImg = null;
+      cachedBoxes = null;
+      excludedZones = new Set();
+      showingBefore = false;
+      photoTexture.style.visibility = 'hidden';
+      photoTexture.style.opacity = '';
+      genStatus.textContent = '';
+      beforeToggleBtn.textContent = "Voir la photo d'origine";
+      photoStage.classList.remove('edit-mode');
+      editHint.classList.remove('show');
+      editZonesBtn.hidden = true;
+      editZonesBtn.textContent = 'Ajuster les zones détectées';
+      zoneOverlay.innerHTML = '';
+    }
+
+    function handleFile(file){
+      if(!file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        resetToolState();
+        
+        // 1. On affiche la photo originale (Ça marche à 100%, pas d'écran noir)
+        sourceDataUrl = e.target.result;
+        photoBase.src = sourceDataUrl;
+        
+        dropzone.style.display = 'none';
+        resultBox.hidden = false;
+
+        // 2. On prépare la version allégée en cachette pour l'IA
+        const img = new Image();
+        img.onload = () => {
+          sourceImg = img; // On garde les dimensions originales pour le masque
+
+          // On force le cadre d'affichage à adopter le vrai ratio de la photo,
+          // sinon object-fit:cover recadre l'image affichée tandis que le masque
+          // (calculé sur l'image entière) ne l'est pas : les deux se décalent.
+          if (img.naturalWidth && img.naturalHeight) {
+            photoStage.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+          }
+
+          const canvas = document.createElement('canvas');
+          const MAX_SIZE = 1536; 
+          let width = img.naturalWidth || img.width;
+          let height = img.naturalHeight || img.height;
+
+          // Si on n'arrive pas à lire la taille, on utilisera l'image d'origine
+          if(!width || !height) {
+            apiDataUrl = sourceDataUrl;
+            return;
+          }
+
+          if (width > height && width > MAX_SIZE) {
+            height = Math.round(height * (MAX_SIZE / width));
+            width = MAX_SIZE;
+          } else if (height > MAX_SIZE) {
+            width = Math.round(width * (MAX_SIZE / height));
+            height = MAX_SIZE;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, width, height);
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // On sauvegarde la version mini pour l'envoi API
+          apiDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        };
+        img.src = sourceDataUrl;
+      };
+      
+      reader.readAsDataURL(file);
+    }
+
+function boxesToMaskDataUrl(boxes, width, height) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+
+    // Fond noir : tout ce qui est noir sera masqué (transparent)
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, width, height);
+
+    // Dessin en blanc : tout ce qui est blanc sera visible (le revêtement s'affichera ici)
+    ctx.fillStyle = 'white';
+    
+    // On dessine chaque zone détectée par l'IA
+    boxes.forEach(box => {
+        // Multiplier par la taille réelle pour convertir le 0.078 en pixels
+        const x = box.x * width;
+        const y = box.y * height;
+        const w = box.w * width;
+        const h = box.h * height;
+        
+        // Un petit padding pour que le revêtement ne dépasse pas sur les bords des meubles
+        const padding = 2; 
+        ctx.fillRect(x + padding, y + padding, w - (padding * 2), h - (padding * 2));
+    });
+
+    return canvas.toDataURL('image/png');
+}
+    function getActiveBoxes(){
+      if(!cachedBoxes) return [];
+      return cachedBoxes.filter((_, i) => !excludedZones.has(i));
+    }
+
+    function applySwatch(){
+      const activeBoxes = getActiveBoxes();
+      if(!sourceImg || !activeBoxes.length){
+        photoTexture.style.visibility = 'hidden';
+        return;
+      }
+      const swatch = SWATCHES.find(s=>s.id===activeSwatch) || SWATCHES[0];
+      photoTexture.style.backgroundImage = `url('${swatch.img}')`;
+      const maskUrl = boxesToMaskDataUrl(activeBoxes, sourceImg.naturalWidth, sourceImg.naturalHeight);
+      photoTexture.style.maskImage = `url(${maskUrl})`;
+      photoTexture.style.webkitMaskImage = `url(${maskUrl})`;
+      photoTexture.style.maskMode = 'luminance';
+      photoTexture.style.webkitMaskMode = 'luminance';
+      photoTexture.style.visibility = 'visible';
+    }
+
+    // Dessine une boîte cliquable par zone détectée, pour permettre à
+    // l'utilisateur d'exclure à la main les zones mal détectées (faux
+    // positifs, débordements...) sans tout recommencer.
+    function renderZoneOverlay(){
+      zoneOverlay.innerHTML = '';
+      if(!cachedBoxes) return;
+      cachedBoxes.forEach((box, i) => {
+        const el = document.createElement('div');
+        const isManual = !!box.manual;
+        el.className = 'zone-box' + (isManual ? ' manual' : '') + (excludedZones.has(i) ? ' excluded' : '');
+        el.style.left = (box.x * 100) + '%';
+        el.style.top = (box.y * 100) + '%';
+        el.style.width = (box.w * 100) + '%';
+        el.style.height = (box.h * 100) + '%';
+        el.dataset.index = i;
+        el.title = (excludedZones.has(i) ? 'Zone exclue — cliquer pour la réactiver' : 'Cliquer pour exclure cette zone') + ' · double-clic pour la supprimer';
+        zoneOverlay.appendChild(el);
+      });
+    }
+
+    zoneOverlay.addEventListener('click', (e)=>{
+      const el = e.target.closest('.zone-box');
+      if(!el) return;
+      const i = Number(el.dataset.index);
+      if(excludedZones.has(i)){
+        excludedZones.delete(i);
+      } else {
+        excludedZones.add(i);
+      }
+      renderZoneOverlay();
+      applySwatch();
+    });
+
+    // Supprime définitivement une zone (double-clic), qu'elle soit détectée
+    // par l'IA ou ajoutée à la main.
+    zoneOverlay.addEventListener('dblclick', (e)=>{
+      const el = e.target.closest('.zone-box');
+      if(!el) return;
+      const i = Number(el.dataset.index);
+      cachedBoxes.splice(i, 1);
+      // Réindexe les zones exclues pour suivre le décalage des indices.
+      const shifted = new Set();
+      excludedZones.forEach(idx => {
+        if(idx < i) shifted.add(idx);
+        else if(idx > i) shifted.add(idx - 1);
+      });
+      excludedZones = shifted;
+      renderZoneOverlay();
+      applySwatch();
+    });
+
+    // --- Ajout manuel d'une zone : cliquer-glisser sur une zone vide de
+    // l'overlay (pas sur une zone-box existante) dessine un nouveau
+    // rectangle, ajouté à cachedBoxes au relâchement de la souris.
+    let manualDraw = null; // { startX, startY, previewEl } en coordonnées relatives à l'overlay
+    function overlayRelativePoint(e){
+      const rect = zoneOverlay.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const x = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+      const y = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
+      return { x, y };
+    }
+
+    zoneOverlay.addEventListener('mousedown', (e)=>{
+      if(e.target.closest('.zone-box')) return; // laisse le clic normal gérer l'inclusion/exclusion
+      if(!photoStage.classList.contains('edit-mode')) return;
+      const p = overlayRelativePoint(e);
+      const previewEl = document.createElement('div');
+      previewEl.className = 'zone-draw-preview';
+      zoneOverlay.appendChild(previewEl);
+      manualDraw = { startX: p.x, startY: p.y, previewEl };
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e)=>{
+      if(!manualDraw) return;
+      const p = overlayRelativePoint(e);
+      const x = Math.min(manualDraw.startX, p.x);
+      const y = Math.min(manualDraw.startY, p.y);
+      const w = Math.abs(p.x - manualDraw.startX);
+      const h = Math.abs(p.y - manualDraw.startY);
+      manualDraw.previewEl.style.left = (x * 100) + '%';
+      manualDraw.previewEl.style.top = (y * 100) + '%';
+      manualDraw.previewEl.style.width = (w * 100) + '%';
+      manualDraw.previewEl.style.height = (h * 100) + '%';
+      manualDraw.current = { x, y, w, h };
+    });
+
+    window.addEventListener('mouseup', ()=>{
+      if(!manualDraw) return;
+      const box = manualDraw.current;
+      manualDraw.previewEl.remove();
+      manualDraw = null;
+      // Ignore les tracés trop petits (probable clic accidentel plutôt qu'un vrai rectangle).
+      if(!box || box.w < 0.015 || box.h < 0.015) return;
+      if(!cachedBoxes) cachedBoxes = [];
+      cachedBoxes.push({ x: box.x, y: box.y, w: box.w, h: box.h, manual: true });
+      renderZoneOverlay();
+      applySwatch();
+    });
+
+    editZonesBtn.addEventListener('click', ()=>{
+      const editing = photoStage.classList.toggle('edit-mode');
+      editHint.classList.toggle('show', editing);
+      editZonesBtn.textContent = editing ? 'Valider les zones' : 'Ajuster les zones détectées';
+      if(editing) renderZoneOverlay();
+    });
+
+    // --- Appel au backend : demande à Gemini 2.5 Flash (gratuit) de repérer
+    // la surface du meuble sur la photo, une seule fois par photo importée.
+    generateBtn.addEventListener('click', async ()=>{
+      if(!sourceDataUrl || !sourceImg){
+        genStatus.textContent = "Importez d'abord une photo.";
+        return;
+      }
+
+      if(cachedBoxes){
+        applySwatch();
+        return;
+      }
+
+      generateBtn.disabled = true;
+      processing.textContent = 'Détection de la zone…';
+      processing.classList.add('show');
+      genStatus.textContent = '';
+
+      try{
+        const boxes = await detectSurface(apiDataUrl || sourceDataUrl);
+        console.log("Coordonnées reçues de l'IA :", boxes);
+        cachedBoxes = Array.isArray(boxes) ? boxes : [];
+        excludedZones = new Set();
+        editZonesBtn.hidden = false;
+        if(!cachedBoxes.length){
+          genStatus.textContent = "Aucune zone n'a été détectée automatiquement. Utilisez « Ajuster les zones détectées » pour en dessiner une à la main.";
+        }
+        applySwatch();
+      } catch(err){
+        console.error('Échec de détection :', err);
+        // Même en cas d'échec de l'IA, on permet à l'utilisateur de dessiner ses zones à la main.
+        cachedBoxes = cachedBoxes || [];
+        excludedZones = excludedZones || new Set();
+        editZonesBtn.hidden = false;
+        genStatus.textContent = "La détection automatique a échoué. Vous pouvez dessiner les zones à la main via « Ajuster les zones détectées ».";
+      } finally {
+        processing.classList.remove('show');
+        generateBtn.disabled = false;
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
